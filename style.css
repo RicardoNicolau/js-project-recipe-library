@@ -26,7 +26,6 @@
   margin-bottom: 0.5rem;
 }
 
-.card p,
-.card ul {
+.card p .card ul {
   margin: 0.5rem 0;
 }
