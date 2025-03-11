@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // Search functionality
+  // Search functionality 
   const searchInput = document.getElementById('filter');
   searchInput.addEventListener('input', function() {
     const searchTerm = this.value.toLowerCase();
