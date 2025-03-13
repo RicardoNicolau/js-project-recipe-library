@@ -95,8 +95,9 @@ h1 {
 }
 
 .card:hover {
-  transform: scale(1.02);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  border: 2px solid #ff6589; /* Rosa border */
+  transform: scale(1.03);
+  box-shadow: 0 4px 15px rgba(255, 101, 137, 0.4); /* Mjuk rosa skugga */
 }
 
 .card img {
@@ -127,17 +128,17 @@ h1 {
 
 /* Highlight Effect */
 .highlight {
-  border: 3px solid #ff6589;
-  box-shadow: 0 0 10px #ff6589;
+  border: 3px solid #3498db; /* Blå border */
+  box-shadow: 0 0 10px #3498db; /* Blå skugga */
   animation: highlightEffect 1.5s ease-in-out infinite alternate;
 }
 
 @keyframes highlightEffect {
   from {
-    box-shadow: 0 0 10px #ff6589;
+    box-shadow: 0 0 10px #3498db;
   }
   to {
-    box-shadow: 0 0 20px #ff6589;
+    box-shadow: 0 0 20px #3498db;
   }
 }
 

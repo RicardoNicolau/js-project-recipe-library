@@ -4,7 +4,7 @@ This is a responsive website for Recipe Library, a fictional recipe collection s
 
 ## Live Demo
 
-Check out the live website at _[Recipe Library](https://recipe-library.netlify.app/)_
+Check out the live website at _[Recipe Library](https://my-recipe-library.netlify.app/)_
 
 ## Features
 
