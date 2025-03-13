@@ -4,7 +4,7 @@ This is a responsive website for Recipe Library, a fictional recipe collection s
 
 ## Live Demo
 
-Check out the live website at [Recipe Library](uploading)\*
+Check out the live website at \*[Recipe Library](uploading)\*
 
 ## Features
 
