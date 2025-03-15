@@ -1,135 +1,216 @@
-/* Importera Futura från en lokal mapp (om du har typsnittsfiler) */
-@font-face {
-  font-family: "Futura";
-  src: url("fonts/Futura.woff2") format("woff2"), url("fonts/Futura.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-
-/* Alternativ: Använd Google Fonts (Montserrat, liknar Futura) */
+/* General Settings */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
 
-/* General Styling */
-body {
-  font-family: "Futura", "Montserrat", Arial, sans-serif; /* Försök först med Futura, annars Montserrat, Arial */
+:root {
+  --primary-color: #2f3e8c; /* Dark blue, base color */
+  --accent-color: #ff6589; /* Pink accent */
+  --light-bg: #f7f9fc; /* Light background */
+  --card-bg: #ffffff; /* White color for cards */
+  --text-color: #333333; /* Dark text */
+  --font-family: "Montserrat", sans-serif;
+  --border-radius: 12px;
+  --transition: 0.3s ease;
+}
+
+/* Loader Styling */
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Dark overlay for better visibility */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: #fff;
+  z-index: 9999;
+  animation: pulse 1.5s infinite;
+}
+
+/* Pulse Animation for Loader */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Global Reset */
+* {
   margin: 0;
   padding: 0;
-  background-color: #f4f4f4;
-  color: #333;
+  box-sizing: border-box;
 }
 
+body {
+  font-family: var(--font-family);
+  background-color: var(--light-bg);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+/* Header */
 header {
-  background-color: #ff6589;
-  color: white;
-  padding: 20px;
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  color: #fff;
+  padding: 2rem 1rem;
   text-align: center;
 }
 
-h1 {
-  margin: 0;
+header h1 {
+  font-size: 2.5rem;
+  letter-spacing: 1px;
 }
 
-/* Filters & Sorting */
+/* Filters Section */
 .filters {
-  background-color: white;
-  padding: 20px;
+  background: #fff;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   text-align: center;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
 }
 
+.filters h2,
+.filters h3 {
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+/* Filter & Sort Buttons */
 .filter-buttons,
 .sort-buttons {
-  margin: 10px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
 }
 
+/* Buttons */
 .filter-btn,
 #sort-asc,
 #sort-desc,
 #random-recipe {
-  background-color: #ff6589;
-  color: white;
+  background: var(--primary-color);
+  color: #fff;
   border: none;
-  padding: 10px 15px;
-  margin: 5px;
+  padding: 0.7rem 1.2rem;
+  border-radius: var(--border-radius);
   cursor: pointer;
-  border-radius: 5px;
-  transition: background 0.3s, transform 0.2s;
+  transition: background var(--transition), transform 0.2s;
+  font-size: 1rem;
 }
 
-/* Mörkare hover-effekt */
 .filter-btn:hover,
 #sort-asc:hover,
 #sort-desc:hover,
 #random-recipe:hover {
-  background-color: #d94c6f; /* Mörkare rosa */
-  transform: scale(1.05);
+  background: var(--accent-color);
+  transform: translateY(-2px);
 }
 
-/* Search Input */
+/* Selected state for buttons (applied via JS) */
+/* For filter buttons except the "all" button */
+.filter-btn.selected {
+  background: var(--accent-color);
+  border: 2px solid var(--primary-color);
+}
+
+/* If the "all" button gets the selected class, reset its style */
+.filter-btn[data-cuisine="all"].selected {
+  background: var(--primary-color);
+  border: none;
+}
+
+/* For sort buttons */
+#sort-asc.selected,
+#sort-desc.selected {
+  background: var(--accent-color);
+  border: 2px solid var(--primary-color);
+}
+
+/* Input & Select Elements */
+.filters select,
 #filter {
-  padding: 10px;
-  width: 250px;
+  padding: 0.6rem;
+  font-size: 1rem;
   border: 1px solid #ddd;
-  border-radius: 5px;
-  margin-top: 10px;
+  border-radius: var(--border-radius);
+  margin: 0.5rem;
+  width: 240px;
 }
 
-/* Recipe Container */
+/* Recipe Cards */
 #recipeContainer {
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
+  gap: 1rem;
   justify-content: center;
 }
 
 .card {
-  flex: 1 1 300px; /* Se till att korten inte blir bredare än 300px */
-  max-width: 350px;
-  margin: 10px;
-  background: white;
-  border-radius: 10px;
-  padding: 15px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  width: 300px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform var(--transition), box-shadow var(--transition);
+  display: flex;
+  flex-direction: column;
   text-align: center;
-  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .card:hover {
-  border: 2px solid #ff6589; /* Rosa border */
-  transform: scale(1.03);
-  box-shadow: 0 4px 15px rgba(255, 101, 137, 0.4); /* Mjuk rosa skugga */
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--accent-color);
 }
 
 .card img {
   width: 100%;
-  max-width: 300px;
-  border-radius: 10px;
-  max-height: 200px;
+  height: 200px;
   object-fit: cover;
-  display: block;
-  margin: 0 auto;
 }
 
 .card h3 {
-  font-size: 20px;
-  margin: 10px 0;
+  margin: 1rem 0 0.5rem;
+  font-size: 1.4rem;
+  color: var(--primary-color);
+  padding: 0 1rem;
 }
 
 .card p {
-  font-size: 14px;
-  color: #666;
+  font-size: 0.95rem;
+  color: #555;
+  padding: 0 1rem 1rem;
 }
 
+/* Time Info */
 .card .time {
   font-weight: bold;
-  color: #ff6589;
-  margin-top: 10px;
+  color: var(--accent-color);
+  margin-bottom: 1rem;
 }
 
-/* Highlight Effect */
+/* Highlight Effect (for selected recipes) */
 .highlight {
-  border: 3px solid #3498db; /* Blå border */
-  box-shadow: 0 0 10px #3498db; /* Blå skugga */
+  border: 3px solid #3498db;
+  box-shadow: 0 0 10px #3498db;
   animation: highlightEffect 1.5s ease-in-out infinite alternate;
 }
 
@@ -145,45 +226,36 @@ h1 {
 /* Footer */
 footer {
   background: #333;
-  color: white;
+  color: #fff;
   text-align: center;
-  padding: 20px;
-  margin-top: 20px;
+  padding: 1.5rem;
+  margin-top: 2rem;
 }
 
 footer a {
-  color: #ff6589;
+  color: var(--accent-color);
   text-decoration: none;
-  transition: color 0.3s;
+  transition: color var(--transition);
 }
 
 footer a:hover {
-  color: #d94c6f; /* Mörkare rosa vid hover */
-  text-decoration: underline;
+  color: var(--primary-color);
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  #recipeContainer {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  .filters {
+    margin: 1rem;
+    padding: 1rem;
   }
 
-  .filter-buttons,
-  .sort-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  #filter,
+  .filters select {
+    width: 90%;
   }
 
-  .filter-btn,
-  #sort-asc,
-  #sort-desc,
-  #random-recipe {
-    font-size: 14px;
-    padding: 8px 12px;
-  }
-
-  #filter {
-    width: 80%;
+  .card {
+    width: 90%;
+    max-width: 400px;
   }
 }
