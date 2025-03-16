@@ -14,57 +14,66 @@
     </header>
 
     <section class="filters">
-      <h2>Filter Options</h2>
-
-      <!-- Filter by cuisine -->
-      <div class="filter-buttons">
-        <button class="filter-btn" data-cuisine="all">All</button>
-        <button class="filter-btn" data-cuisine="spanish">Spanish</button>
-        <button class="filter-btn" data-cuisine="italian">Italian</button>
-        <button class="filter-btn" data-cuisine="american">American</button>
-        <button class="filter-btn" data-cuisine="mexican">Mexican</button>
-        <button class="filter-btn" data-cuisine="chinese">Chinese</button>
+      <!-- Row 1: Cuisine Filter Buttons -->
+      <div class="row cuisine-row">
+        <div class="filter-buttons">
+          <button class="filter-btn" data-cuisine="all">All</button>
+          <button class="filter-btn" data-cuisine="spanish">Spanish</button>
+          <button class="filter-btn" data-cuisine="italian">Italian</button>
+          <button class="filter-btn" data-cuisine="american">American</button>
+          <button class="filter-btn" data-cuisine="mexican">Mexican</button>
+          <button class="filter-btn" data-cuisine="chinese">Chinese</button>
+        </div>
       </div>
 
-      <!-- Live search -->
-      <label for="filter">Search</label>
-      <input type="text" id="filter" placeholder="Search for recipe..." />
+      <!-- Row 2: Select Filters for Dietary, Cooking Time, and Ingredients -->
+      <div class="row select-row">
+        <div class="filter-group">
+          <label for="diet-filter">Dietary Preference</label>
+          <select id="diet-filter">
+            <option value="all">All</option>
+            <option value="vegan">Vegan</option>
+            <option value="vegetarian">Vegetarian</option>
+            <option value="gluten-free">Gluten-Free</option>
+            <option value="dairy-free">Dairy-Free</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label for="time-filter">Cooking Time</label>
+          <select id="time-filter">
+            <option value="all">All</option>
+            <option value="under15">Under 15 min</option>
+            <option value="15to30">15-30 min</option>
+            <option value="30to60">30-60 min</option>
+            <option value="over60">Over 60 min</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label for="ingredients-filter">Amount of Ingredients</label>
+          <select id="ingredients-filter">
+            <option value="all">All</option>
+            <option value="under5">Under 5 ingredients</option>
+            <option value="6to10">6-10 ingredients</option>
+            <option value="11to15">11-15 ingredients</option>
+            <option value="over16">Over 16 ingredients</option>
+          </select>
+        </div>
+      </div>
 
-      <!-- Dietary preferences -->
-      <label for="diet-filter">Dietary Preference</label>
-      <select id="diet-filter">
-        <option value="all">All</option>
-        <option value="vegan">Vegan</option>
-        <option value="vegetarian">Vegetarian</option>
-        <option value="gluten-free">Gluten-Free</option>
-        <option value="dairy-free">Dairy-Free</option>
-      </select>
+      <!-- Row 3: Search Function -->
+      <div class="row search-row">
+        <label for="filter">Search</label>
+        <input type="text" id="filter" placeholder="Search for recipe..." />
+      </div>
 
-      <!-- Cooking time filter -->
-      <label for="time-filter">Cooking Time</label>
-      <select id="time-filter">
-        <option value="all">All</option>
-        <option value="under15">Under 15 min</option>
-        <option value="15to30">15-30 min</option>
-        <option value="30to60">30-60 min</option>
-        <option value="over60">Over 60 min</option>
-      </select>
-
-      <!-- Ingredients filter -->
-      <label for="ingredients-filter">Amount of Ingredients</label>
-      <select id="ingredients-filter">
-        <option value="all">All</option>
-        <option value="under5">Under 5 ingredients</option>
-        <option value="6to10">6-10 ingredients</option>
-        <option value="11to15">11-15 ingredients</option>
-        <option value="over16">Over 16 ingredients</option>
-      </select>
-
-      <!-- Sorting -->
-      <div class="sort-buttons">
-        <h3>Sort Options</h3>
+      <!-- Sorting Row: "Sort by time" with ascending and descending buttons -->
+      <div class="row sort-row">
+        <h3>Sort by time</h3>
         <button id="sort-asc">Ascending</button>
         <button id="sort-desc">Descending</button>
+      </div>
+      <!-- Random Recipe Row: placed on its own row -->
+      <div class="row random-row">
         <button id="random-recipe">Random Recipe</button>
       </div>
     </section>
