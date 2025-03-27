@@ -1,5 +1,5 @@
 // Global variables
-const apiKey = "df1f683d4ed54e19a2be5417eae2a4fd"; // Replace with your own key if needed
+const apiKey = "df1f683d4ed54e19a2be5417eae2a4fd";
 let recipesData = []; // All fetched recipes
 const recipesPerLoad = 15; // Number of recipes per load
 let currentIndex = 0; // Counter for displayed recipes
@@ -86,42 +86,37 @@ function renderRecipes() {
 function applyFilters() {
   const recipeCards = Array.from(document.querySelectorAll("#recipeContainer .card"));
   let visibleCount = 0;
+
   recipeCards.forEach((card) => {
     const cardCuisine = card.getAttribute("data-cuisine") || "all";
     const cardDiet = card.getAttribute("data-diet") || "all";
     const title = card.querySelector("h3").textContent.toLowerCase();
     const time = parseInt(card.getAttribute("data-time"), 10) || 0;
     const ingredientCount = parseInt(card.getAttribute("data-ingredients"), 10) || 0;
+
     // Check cuisine, diet, and search term
     const cuisineMatch = activeCuisine === "all" || cardCuisine === activeCuisine;
     const dietMatch = activeDiet === "all" || cardDiet.includes(activeDiet);
     const searchMatch = title.includes(activeSearch);
+
     // Check cooking time
     let timeMatch = false;
-    if (activeTime === "all") {
-      timeMatch = true;
-    } else if (activeTime === "under15" && time < 15) {
-      timeMatch = true;
-    } else if (activeTime === "15to30" && time >= 15 && time <= 30) {
-      timeMatch = true;
-    } else if (activeTime === "30to60" && time > 30 && time <= 60) {
-      timeMatch = true;
-    } else if (activeTime === "over60" && time > 60) {
-      timeMatch = true;
-    }
+    if (activeTime === "all") timeMatch = true;
+    else if (activeTime === "under15" && time < 15) timeMatch = true;
+    else if (activeTime === "15to30" && time >= 15 && time <= 30) timeMatch = true;
+    else if (activeTime === "30to60" && time > 30 && time <= 60) timeMatch = true;
+    else if (activeTime === "over60" && time > 60) timeMatch = true;
+
     // Check amount of ingredients
     let ingredientsMatch = false;
-    if (activeIngredientsFilter === "all") {
+    if (activeIngredientsFilter === "all") ingredientsMatch = true;
+    else if (activeIngredientsFilter === "under5" && ingredientCount < 5) ingredientsMatch = true;
+    else if (activeIngredientsFilter === "6to10" && ingredientCount >= 6 && ingredientCount <= 10)
       ingredientsMatch = true;
-    } else if (activeIngredientsFilter === "under5" && ingredientCount < 5) {
+    else if (activeIngredientsFilter === "11to15" && ingredientCount >= 11 && ingredientCount <= 15)
       ingredientsMatch = true;
-    } else if (activeIngredientsFilter === "6to10" && ingredientCount >= 6 && ingredientCount <= 10) {
-      ingredientsMatch = true;
-    } else if (activeIngredientsFilter === "11to15" && ingredientCount >= 11 && ingredientCount <= 15) {
-      ingredientsMatch = true;
-    } else if (activeIngredientsFilter === "over16" && ingredientCount > 16) {
-      ingredientsMatch = true;
-    }
+    else if (activeIngredientsFilter === "over16" && ingredientCount > 16) ingredientsMatch = true;
+
     if (cuisineMatch && dietMatch && searchMatch && timeMatch && ingredientsMatch) {
       card.style.display = "";
       visibleCount++;
@@ -129,10 +124,19 @@ function applyFilters() {
       card.style.display = "none";
     }
   });
-  // If no cards are visible, show an empty state message
-  const container = document.querySelector("#recipeContainer");
-  if (visibleCount === 0 && recipeCards.length > 0) {
-    container.innerHTML = `<p>No recipes match your filters.</p>`;
+
+  // Show or hide the "No recipes match your filters" message
+  let noRecipesMessage = document.querySelector("#noRecipesMessage");
+
+  if (visibleCount === 0) {
+    if (!noRecipesMessage) {
+      noRecipesMessage = document.createElement("p");
+      noRecipesMessage.id = "noRecipesMessage";
+      noRecipesMessage.textContent = "No recipes match your filters.";
+      document.querySelector("#recipeContainer").appendChild(noRecipesMessage);
+    }
+  } else if (noRecipesMessage) {
+    noRecipesMessage.remove();
   }
 }
 

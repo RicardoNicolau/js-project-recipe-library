@@ -264,6 +264,30 @@ header h1 {
   }
 }
 
+/* Styling for No Recipes Message */
+#noRecipesMessage {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: var(--card-bg);
+  border: 2px dashed var(--accent-color);
+  border-radius: var(--border-radius);
+  color: var(--primary-color);
+  font-size: 1.2rem;
+  text-align: center;
+  max-width: 600px;
+  margin: 2rem auto;
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 /* Footer */
 footer {
   background: #333;
