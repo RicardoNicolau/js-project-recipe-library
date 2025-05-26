@@ -24,4 +24,4 @@ Check out the live website at _[Recipe Library](https://my-recipe-library.netlif
 - **script.js:** The JavaScript file that handles fetching data from Spoonacular, caching in localStorage, dynamic filtering, sorting (by cooking time), infinite scroll, random recipe selection, loader functionality, and disabling scrolling during loading.
 - **README.md:** This documentation file outlining the project details.
 
-© 2025 Recipe Library. All Rights Reserved. | Developed & Designed by Ricardo Nicolau
+© 2025 Recipe Library. All Rights Reserved. | Developed & Designed by DevByRico
